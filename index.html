@@ -2,296 +2,243 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CyberLab — Phishing Simulation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberLab</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#eef1f4;
-  color:#182026;
-}
-.container{
-  width:94%;
-  max-width:850px;
-  margin:35px auto;
-}
-.header{
-  text-align:center;
-  margin-bottom:25px;
-}
-.header h1{margin:0 0 8px}
-.header p{color:#667781}
-
-.warning{
-  background:#fff3cd;
-  border:1px solid #ead28a;
-  padding:13px;
-  border-radius:10px;
-  text-align:center;
-  margin-bottom:20px;
-  font-size:14px;
+* {
+  box-sizing: border-box;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef1f4;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card{
-  background:white;
-  border-radius:15px;
-  padding:24px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+.card {
+  width: 92%;
+  max-width: 420px;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+  text-align: center;
 }
 
-.card h2{
-  font-size:19px;
-  margin-top:0;
+.logo {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.step{
-  padding:13px;
-  border-radius:9px;
-  background:#f5f7f8;
-  margin:10px 0;
+h1 {
+  margin: 0 0 8px;
 }
 
-input{
-  width:100%;
-  padding:13px;
-  margin:8px 0;
-  border:1px solid #ccd0d5;
-  border-radius:8px;
-  font-size:16px;
-  text-align:center;
+.subtitle {
+  color: #667781;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 25px;
 }
 
-button{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:8px;
-  background:#222;
-  color:white;
-  font-size:15px;
-  cursor:pointer;
-  margin-top:8px;
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #ccd0d5;
+  border-radius: 9px;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
 }
 
-button.secondary{
-  background:#e9edef;
-  color:#222;
+input:focus {
+  border-color: #25d366;
 }
 
-.hidden{display:none}
-
-.result{
-  margin-top:15px;
-  padding:14px;
-  border-radius:9px;
-  background:#e8f5e9;
-  line-height:1.8;
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 9px;
+  background: #25d366;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.flow{
-  margin-top:20px;
+.back {
+  margin-top: 10px;
+  background: #e9edef;
+  color: #222;
 }
 
-.flow div{
-  padding:13px;
-  margin:8px 0;
-  border-radius:8px;
-  background:#f5f7f8;
+.hidden {
+  display: none;
 }
 
-@media(max-width:650px){
-  .grid{grid-template-columns:1fr}
+.result {
+  margin-top: 18px;
+  padding: 15px;
+  background: #e8f5e9;
+  border-radius: 9px;
+  line-height: 1.8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 
-  <div class="header">
-    <h1>🛡️ CyberLab</h1>
-    <p>شبیه‌ساز آموزشی حملهٔ فیشینگ</p>
+  <div class="logo">C</div>
+
+  <h1>CyberLab</h1>
+
+  <div class="subtitle">
+    شبیه‌ساز آموزشی ورود دو مرحله‌ای
   </div>
 
-  <div class="warning">
-    ⚠️ محیط کاملاً آزمایشی است. هیچ شماره، کد یا اطلاعاتی ذخیره و ارسال نمی‌شود.
+  <!-- مرحله شماره -->
+  <div id="phonePage">
+
+    <input
+      id="phone"
+      type="tel"
+      inputmode="tel"
+      placeholder="شمارهٔ آزمایشی"
+      autocomplete="off"
+    >
+
+    <button id="next" type="button">
+      ادامه
+    </button>
+
   </div>
 
-  <div class="grid">
+  <!-- مرحله کد -->
+  <div id="codePage" class="hidden">
 
-    <!-- کاربر آزمایشی -->
-    <div class="card">
-
-      <h2>👤 کاربر آزمایشی</h2>
-
-      <div id="phoneStep">
-
-        <p>مرحله ۱: شمارهٔ آزمایشی</p>
-
-        <input
-          id="phone"
-          type="tel"
-          inputmode="tel"
-          placeholder="مثلاً 0700000000"
-          autocomplete="off"
-        >
-
-        <button id="requestCode">
-          درخواست کد آزمایشی
-        </button>
-
-      </div>
-
-      <div id="codeStep" class="hidden">
-
-        <p>مرحله ۲: کد تأیید</p>
-
-        <p>
-          یک کد ۶ رقمی <b>ساختگی</b> برای این آزمایش نمایش داده شده است.
-        </p>
-
-        <input
-          id="code"
-          type="text"
-          inputmode="numeric"
-          maxlength="6"
-          placeholder="------"
-          autocomplete="off"
-        >
-
-        <button id="verify">
-          تأیید آزمایشی
-        </button>
-
-        <button id="back" class="secondary">
-          برگشت
-        </button>
-
-      </div>
-
-      <div id="userResult" class="result hidden"></div>
-
+    <div class="subtitle">
+      کد ۶ رقمی آزمایشی را وارد کن
     </div>
 
-    <!-- شبیه‌ساز مهاجم -->
-    <div class="card">
+    <input
+      id="code"
+      type="text"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="------"
+      autocomplete="off"
+    >
 
-      <h2>🧪 پنل شبیه‌سازی</h2>
+    <button id="submit" type="button">
+      تأیید آزمایشی
+    </button>
 
-      <div class="step">
-        <b>مرحله ۱</b><br>
-        مهاجم یک صفحهٔ جعلی ایجاد می‌کند.
-      </div>
-
-      <div class="step">
-        <b>مرحله ۲</b><br>
-        کاربر شمارهٔ خود را وارد می‌کند.
-      </div>
-
-      <div class="step">
-        <b>مرحله ۳</b><br>
-        سرویس واقعی کد تأیید می‌فرستد.
-      </div>
-
-      <div class="step">
-        <b>مرحله ۴</b><br>
-        کاربر ممکن است کد را در صفحهٔ جعلی وارد کند.
-      </div>
-
-      <div class="step">
-        <b>مرحله ۵</b><br>
-        در حملهٔ واقعی، کد می‌تواند برای سوءاستفاده استفاده شود.
-      </div>
-
-    </div>
+    <button id="back" class="back" type="button">
+      برگشت
+    </button>
 
   </div>
 
-  <div class="card flow">
-
-    <h2>🔍 نتیجهٔ آموزشی</h2>
-
-    <div id="flowText">
-      هنوز آزمایش شروع نشده است.
-    </div>
-
-  </div>
+  <!-- نتیجه -->
+  <div id="result" class="result hidden"></div>
 
 </div>
 
+
 <script>
-const phoneStep = document.getElementById("phoneStep");
-const codeStep = document.getElementById("codeStep");
+
+const phonePage = document.getElementById("phonePage");
+const codePage = document.getElementById("codePage");
+
 const phone = document.getElementById("phone");
 const code = document.getElementById("code");
-const userResult = document.getElementById("userResult");
-const flowText = document.getElementById("flowText");
 
-let demoCode = "";
+const result = document.getElementById("result");
 
-document.getElementById("requestCode").addEventListener("click", () => {
+
+// رفتن از شماره به کد
+document.getElementById("next").addEventListener("click", function() {
 
   if (!phone.value.trim()) {
-    alert("یک شمارهٔ آزمایشی وارد کن.");
+
+    result.classList.remove("hidden");
+
+    result.textContent =
+      "لطفاً یک شمارهٔ آزمایشی وارد کن.";
+
     return;
   }
 
-  // فقط برای شبیه‌سازی محلی؛ هیچ ارسال یا ذخیره‌ای انجام نمی‌شود.
-  demoCode = String(Math.floor(100000 + Math.random() * 900000));
+  phonePage.classList.add("hidden");
 
-  phoneStep.classList.add("hidden");
-  codeStep.classList.remove("hidden");
+  codePage.classList.remove("hidden");
 
-  flowText.innerHTML =
-    "✅ شمارهٔ آزمایشی دریافت شد.<br><br>" +
-    "📨 کد ۶ رقمی ساختگی تولید شد.<br><br>" +
-    "🔐 این کد فقط داخل همین مرورگر وجود دارد و به هیچ سروری ارسال نمی‌شود.<br><br>" +
-    "<b>کد آزمایشی:</b> " + demoCode;
+  result.classList.add("hidden");
 
   code.focus();
+
 });
 
-document.getElementById("verify").addEventListener("click", () => {
 
-  if (!/^\d{6}$/.test(code.value)) {
-    alert("کد باید دقیقاً ۶ رقم باشد.");
+// بررسی کد آزمایشی
+document.getElementById("submit").addEventListener("click", function() {
+
+  const enteredCode = code.value.trim();
+
+  if (!/^\d{6}$/.test(enteredCode)) {
+
+    result.classList.remove("hidden");
+
+    result.textContent =
+      "کد باید دقیقاً ۶ رقم باشد.";
+
     return;
   }
 
-  userResult.classList.remove("hidden");
+  result.classList.remove("hidden");
 
-  if (code.value === demoCode) {
+  result.innerHTML =
+    "<b>نتیجهٔ آزمایش</b><br><br>" +
+    "کد واردشده: <b>" + enteredCode + "</b>" +
+    "<br><br>" +
+    "✅ این کد فقط داخل همین صفحه نمایش داده شد و هیچ‌جا ارسال نشد.";
 
-    userResult.innerHTML =
-      "✅ کد آزمایشی درست بود.<br><br>" +
-      "این فقط یک شبیه‌سازی آموزشی است؛ هیچ حسابی وارد نشد و هیچ اطلاعاتی ارسال نشد.";
-
-  } else {
-
-    userResult.innerHTML =
-      "❌ کد آزمایشی نادرست است.<br><br>" +
-      "در دنیای واقعی، کدهای تأیید را نباید در صفحه‌های ناشناس وارد کرد.";
-  }
 });
 
-document.getElementById("back").addEventListener("click", () => {
 
-  codeStep.classList.add("hidden");
-  phoneStep.classList.remove("hidden");
+// برگشت
+document.getElementById("back").addEventListener("click", function() {
+
+  codePage.classList.add("hidden");
+
+  phonePage.classList.remove("hidden");
+
   code.value = "";
-  userResult.classList.add("hidden");
-  flowText.innerHTML = "آزمایش دوباره آماده است.";
+
+  result.classList.add("hidden");
+
+  phone.focus();
+
 });
+
 </script>
 
 </body>
