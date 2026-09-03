@@ -3,18 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberLab</title>
+<title>CyberLab Lab</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #eef1f4;
-  color: #111;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -22,10 +17,10 @@ body {
 }
 
 .card {
-  width: 92%;
-  max-width: 420px;
+  width: 90%;
+  max-width: 400px;
   background: white;
-  padding: 30px;
+  padding: 28px;
   border-radius: 18px;
   box-shadow: 0 8px 30px rgba(0,0,0,.12);
   text-align: center;
@@ -34,26 +29,23 @@ body {
 .logo {
   width: 65px;
   height: 65px;
-  margin: 0 auto 18px;
+  margin: auto;
+  margin-bottom: 18px;
   border-radius: 50%;
   background: #25d366;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-}
-
-h1 {
-  margin: 0 0 8px;
 }
 
 .subtitle {
   color: #667781;
   font-size: 14px;
   line-height: 1.7;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
 }
 
 input {
@@ -62,41 +54,36 @@ input {
   margin-bottom: 12px;
   border: 1px solid #ccd0d5;
   border-radius: 9px;
-  font-size: 16px;
+  font-size: 17px;
   text-align: center;
-  outline: none;
-}
-
-input:focus {
-  border-color: #25d366;
+  box-sizing: border-box;
 }
 
 button {
   width: 100%;
   padding: 14px;
-  border: none;
+  border: 0;
   border-radius: 9px;
   background: #25d366;
   color: white;
   font-size: 16px;
-  cursor: pointer;
-}
-
-.back {
-  margin-top: 10px;
-  background: #e9edef;
-  color: #222;
 }
 
 .hidden {
   display: none;
 }
 
-.result {
-  margin-top: 18px;
-  padding: 15px;
-  background: #e8f5e9;
+.demo-code {
+  background: #f0f2f5;
+  padding: 12px;
   border-radius: 9px;
+  margin-bottom: 15px;
+  font-size: 22px;
+  letter-spacing: 4px;
+}
+
+.message {
+  margin-top: 15px;
   line-height: 1.8;
 }
 </style>
@@ -108,10 +95,10 @@ button {
 
   <div class="logo">C</div>
 
-  <h1>CyberLab</h1>
+  <h2>CyberLab</h2>
 
   <div class="subtitle">
-    شبیه‌ساز آموزشی ورود دو مرحله‌ای
+    شبیه‌ساز آموزشی امنیت
   </div>
 
   <!-- مرحله شماره -->
@@ -120,124 +107,96 @@ button {
     <input
       id="phone"
       type="tel"
-      inputmode="tel"
-      placeholder="شمارهٔ آزمایشی"
-      autocomplete="off"
+      inputmode="numeric"
+      placeholder="شماره آزمایشی"
     >
 
-    <button id="next" type="button">
+    <button onclick="createCode()">
       ادامه
     </button>
 
   </div>
 
+
   <!-- مرحله کد -->
   <div id="codePage" class="hidden">
 
     <div class="subtitle">
-      کد ۶ رقمی آزمایشی را وارد کن
+      این یک کد ساختگی برای آزمایش است:
     </div>
+
+    <div class="demo-code" id="demoCode"></div>
 
     <input
       id="code"
       type="text"
       inputmode="numeric"
       maxlength="6"
-      placeholder="------"
-      autocomplete="off"
+      placeholder="کد ۶ رقمی"
     >
 
-    <button id="submit" type="button">
+    <button onclick="checkCode()">
       تأیید آزمایشی
     </button>
 
-    <button id="back" class="back" type="button">
-      برگشت
-    </button>
+    <div class="message" id="message"></div>
 
   </div>
-
-  <!-- نتیجه -->
-  <div id="result" class="result hidden"></div>
 
 </div>
 
 
 <script>
 
-const phonePage = document.getElementById("phonePage");
-const codePage = document.getElementById("codePage");
+let generatedCode = "";
 
-const phone = document.getElementById("phone");
-const code = document.getElementById("code");
+function createCode() {
 
-const result = document.getElementById("result");
+  const phone = document.getElementById("phone").value.trim();
 
-
-// رفتن از شماره به کد
-document.getElementById("next").addEventListener("click", function() {
-
-  if (!phone.value.trim()) {
-
-    result.classList.remove("hidden");
-
-    result.textContent =
-      "لطفاً یک شمارهٔ آزمایشی وارد کن.";
-
+  if (phone === "") {
+    alert("لطفاً یک شماره آزمایشی وارد کن.");
     return;
   }
 
-  phonePage.classList.add("hidden");
+  // تولید کد کاملاً ساختگی
+  generatedCode =
+    Math.floor(100000 + Math.random() * 900000).toString();
 
-  codePage.classList.remove("hidden");
+  document.getElementById("demoCode").textContent =
+    generatedCode;
 
-  result.classList.add("hidden");
+  document.getElementById("phonePage")
+    .classList.add("hidden");
 
-  code.focus();
+  document.getElementById("codePage")
+    .classList.remove("hidden");
+}
 
-});
 
+function checkCode() {
 
-// بررسی کد آزمایشی
-document.getElementById("submit").addEventListener("click", function() {
+  const entered =
+    document.getElementById("code").value.trim();
 
-  const enteredCode = code.value.trim();
+  const message =
+    document.getElementById("message");
 
-  if (!/^\d{6}$/.test(enteredCode)) {
+  if (entered === generatedCode) {
 
-    result.classList.remove("hidden");
+    message.innerHTML =
+      "✅ آزمایش موفق شد.<br>" +
+      "کد ساختگی درست بود.";
 
-    result.textContent =
-      "کد باید دقیقاً ۶ رقم باشد.";
+  } else {
 
-    return;
+    message.innerHTML =
+      "❌ کد اشتباه است.<br>" +
+      "دوباره امتحان کن.";
+
   }
 
-  result.classList.remove("hidden");
-
-  result.innerHTML =
-    "<b>نتیجهٔ آزمایش</b><br><br>" +
-    "کد واردشده: <b>" + enteredCode + "</b>" +
-    "<br><br>" +
-    "✅ این کد فقط داخل همین صفحه نمایش داده شد و هیچ‌جا ارسال نشد.";
-
-});
-
-
-// برگشت
-document.getElementById("back").addEventListener("click", function() {
-
-  codePage.classList.add("hidden");
-
-  phonePage.classList.remove("hidden");
-
-  code.value = "";
-
-  result.classList.add("hidden");
-
-  phone.focus();
-
-});
+}
 
 </script>
 
