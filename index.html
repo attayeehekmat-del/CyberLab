@@ -1,14 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberLab</title>
+  <title>CyberLab - Phishing Awareness</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .warning {
+      background: #fff3cd;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #e8f5e9;
+      border-radius: 8px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>Welcome to CyberLab</h1>
-  <p>My first cybersecurity lab.</p>
+  <div class="card">
+
+    <h1>CyberLab</h1>
+
+    <div class="warning">
+      ⚠️ این صفحه یک شبیه‌ساز آموزشی برای آگاهی از فیشینگ است.
+      هیچ اطلاعاتی ذخیره یا ارسال نمی‌شود.
+    </div>
+
+    <form id="demoForm">
+
+      <input
+        type="text"
+        placeholder="نام کاربری آزمایشی"
+        autocomplete="off"
+      >
+
+      <input
+        type="password"
+        placeholder="رمز عبور آزمایشی"
+        autocomplete="off"
+      >
+
+      <button type="submit">
+        ورود آزمایشی
+      </button>
+
+    </form>
+
+    <div id="result">
+      ✅ آزمایش تمام شد.<br><br>
+      اگر این یک صفحه واقعی فیشینگ بود، وارد کردن اطلاعات می‌توانست خطرناک باشد.
+      همیشه آدرس سایت و دامنه را قبل از وارد کردن رمز بررسی کن.
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("demoForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // هیچ اطلاعاتی ذخیره یا ارسال نمی‌شود.
+      document.getElementById("result").style.display = "block";
+    });
+  </script>
 
 </body>
 </html>
