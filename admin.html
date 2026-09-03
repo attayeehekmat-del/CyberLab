@@ -3,44 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CyberLab Admin</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eef1f4;
-  padding: 30px;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#eef1f4;
+  padding:25px;
 }
 
-.panel {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 25px rgba(0,0,0,.12);
+.panel{
+  max-width:600px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
 }
 
-h1 {
-  margin-top: 0;
+h1{
+  margin-top:0;
 }
 
-.item {
-  background: #f5f6f7;
-  padding: 15px;
-  margin-top: 12px;
-  border-radius: 10px;
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
-.label {
-  color: #667781;
-  font-size: 13px;
+.box{
+  background:#f5f6f7;
+  padding:18px;
+  border-radius:12px;
 }
 
-.value {
-  font-size: 18px;
-  margin-top: 5px;
+.number{
+  font-size:28px;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.test{
+  margin-top:20px;
+  padding:18px;
+  border-radius:12px;
+  background:#e8f5e9;
+}
+
+.status{
+  color:green;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -49,23 +63,43 @@ h1 {
 
 <div class="panel">
 
-<h1>CyberLab 🛡️</h1>
+<h1>🛡️ CyberLab</h1>
 
-<p>پنل آزمایش آموزشی</p>
+<p>داشبورد لاب آموزشی امنیت</p>
 
-<div class="item">
-  <div class="label">شماره آزمایشی</div>
-  <div class="value">0700000000</div>
+<div class="stats">
+
+<div class="box">
+آزمایش‌ها
+<div class="number">1</div>
 </div>
 
-<div class="item">
-  <div class="label">کد آزمایشی</div>
-  <div class="value">482913</div>
+<div class="box">
+موفق
+<div class="number">1</div>
 </div>
 
-<div class="item">
-  <div class="label">وضعیت</div>
-  <div class="value">✅ آزمایش موفق</div>
+</div>
+
+<div class="test">
+
+<b>Test #001</b>
+
+<br><br>
+
+نوع آزمایش:
+<br>
+OTP Simulation
+
+<br><br>
+
+وضعیت:
+<span class="status">موفق ✅</span>
+
+<br><br>
+
+این آزمایش هیچ OTP واقعی را دریافت یا ذخیره نکرده است.
+
 </div>
 
 </div>
