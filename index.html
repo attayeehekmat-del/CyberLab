@@ -1,122 +1,228 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberLab - Phishing Awareness</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberLab — Login Simulation</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f4f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+*{box-sizing:border-box}
 
-    .card {
-      width: 90%;
-      max-width: 400px;
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f0f2f5;
+  color:#111;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-    h1 {
-      margin-bottom: 10px;
-    }
+.card{
+  width:92%;
+  max-width:420px;
+  background:#fff;
+  padding:32px 28px;
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  text-align:center;
+}
 
-    .warning {
-      background: #fff3cd;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 20px;
+  border-radius:50%;
+  background:#25d366;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  font-weight:bold;
+}
 
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+h1{
+  margin:0 0 8px;
+  font-size:25px;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #222;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.subtitle{
+  color:#667781;
+  font-size:14px;
+  margin-bottom:25px;
+  line-height:1.7;
+}
 
-    #result {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      background: #e8f5e9;
-      border-radius: 8px;
-    }
-  </style>
+.notice{
+  background:#fff8df;
+  border:1px solid #f0df9b;
+  padding:11px;
+  border-radius:9px;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd0d5;
+  border-radius:9px;
+  font-size:16px;
+  margin-bottom:12px;
+  outline:none;
+  text-align:center;
+}
+
+input:focus{
+  border-color:#25d366;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:9px;
+  background:#25d366;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.hidden{
+  display:none;
+}
+
+.back{
+  background:#eef1f3;
+  color:#333;
+  margin-top:10px;
+}
+
+.message{
+  margin-top:18px;
+  padding:14px;
+  border-radius:9px;
+  background:#e8f5e9;
+  line-height:1.8;
+  font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
+<div class="card">
 
-    <h1>CyberLab</h1>
+  <div class="logo">C</div>
 
-    <div class="warning">
-      ⚠️ این صفحه یک شبیه‌ساز آموزشی برای آگاهی از فیشینگ است.
-      هیچ اطلاعاتی ذخیره یا ارسال نمی‌شود.
-    </div>
+  <h1>CyberLab</h1>
 
-    <form id="demoForm">
-
-      <input
-        type="text"
-        placeholder="نام کاربری آزمایشی"
-        autocomplete="off"
-      >
-
-      <input
-        type="password"
-        placeholder="رمز عبور آزمایشی"
-        autocomplete="off"
-      >
-
-      <button type="submit">
-        ورود آزمایشی
-      </button>
-
-    </form>
-
-    <div id="result">
-      ✅ آزمایش تمام شد.<br><br>
-      اگر این یک صفحه واقعی فیشینگ بود، وارد کردن اطلاعات می‌توانست خطرناک باشد.
-      همیشه آدرس سایت و دامنه را قبل از وارد کردن رمز بررسی کن.
-    </div>
-
+  <div class="subtitle">
+    شبیه‌ساز آموزشی ورود دو مرحله‌ای
   </div>
 
-  <script>
-    document.getElementById("demoForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+  <div class="notice">
+    ⚠️ این یک آزمایش امنیتی است.<br>
+    هیچ شماره یا کدی ذخیره یا ارسال نمی‌شود.
+  </div>
 
-      // هیچ اطلاعاتی ذخیره یا ارسال نمی‌شود.
-      document.getElementById("result").style.display = "block";
-    });
-  </script>
+  <!-- مرحله اول -->
+  <section id="phoneStep">
+
+    <input
+      id="phone"
+      type="tel"
+      inputmode="tel"
+      placeholder="شماره آزمایشی"
+      autocomplete="off"
+    >
+
+    <button id="continueBtn" type="button">
+      ادامه
+    </button>
+
+  </section>
+
+  <!-- مرحله دوم -->
+  <section id="codeStep" class="hidden">
+
+    <p>
+      یک کد ۶ رقمی آزمایشی وارد کن
+    </p>
+
+    <input
+      id="code"
+      type="text"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="------"
+      autocomplete="off"
+    >
+
+    <button id="verifyBtn" type="button">
+      تأیید
+    </button>
+
+    <button id="backBtn" class="back" type="button">
+      برگشت
+    </button>
+
+  </section>
+
+  <div id="result" class="message hidden"></div>
+
+</div>
+
+<script>
+const phoneStep = document.getElementById("phoneStep");
+const codeStep = document.getElementById("codeStep");
+const phone = document.getElementById("phone");
+const code = document.getElementById("code");
+const result = document.getElementById("result");
+
+document.getElementById("continueBtn").addEventListener("click", () => {
+
+  if (!phone.value.trim()) {
+    alert("لطفاً یک شماره آزمایشی وارد کن.");
+    return;
+  }
+
+  phoneStep.classList.add("hidden");
+  codeStep.classList.remove("hidden");
+  code.focus();
+});
+
+document.getElementById("verifyBtn").addEventListener("click", () => {
+
+  const value = code.value.trim();
+
+  if (!/^\d{6}$/.test(value)) {
+    alert("کد آزمایشی باید دقیقاً ۶ رقم باشد.");
+    return;
+  }
+
+  codeStep.classList.add("hidden");
+  result.classList.remove("hidden");
+
+  result.innerHTML =
+    "✅ آزمایش با موفقیت انجام شد.<br><br>" +
+    "این صفحه هیچ شماره یا کدی را ذخیره یا ارسال نکرد.";
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+
+  codeStep.classList.add("hidden");
+  phoneStep.classList.remove("hidden");
+  code.value = "";
+  phone.focus();
+});
+</script>
 
 </body>
 </html>
